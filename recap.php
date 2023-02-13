@@ -8,6 +8,7 @@ session_start();        /*Nécessaire pour accéder à la session correspondante
     <meta charset="UTF-8">
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
     <title>Récapitulatif des produits</title>
 </head>
 <body>
@@ -33,14 +34,14 @@ session_start();        /*Nécessaire pour accéder à la session correspondante
                         <td>$index</td>
                         <td>".$product['name']."</td>
                         <td>".number_format($product['price'], 2, ',', '&nbsp;')."&nbsp;€</td>
-                        <td>".$product['quantity']."</td>
+                        <td>".$product['qtt']."</td>
                         <td>".number_format($product['total'], 2, ',', '&nbsp;')."&nbsp;€</td>
                     </tr>";
                 $totalGeneral += $product['total'];
             }
             echo "<tr>
-                    <td colspan=4>Total général :</td>
-                    <td><strong>".number_format($totalGeneral, 2, ',', '&nbsp;')."&nbsp;€</strong></td>
+                    <td colspan=4 class='total'>Total général :</td>
+                    <td class='total'><strong>".number_format($totalGeneral, 2, ',', '&nbsp;')."&nbsp;€</strong></td>
                     </tbody>
                 </table>";
         }

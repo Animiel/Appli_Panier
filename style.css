@@ -1,0 +1,52 @@
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+label {
+    border-bottom: 1px solid rgb(215, 215, 215);
+    padding: 10px;
+}
+
+input[type="submit"] {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 2px;
+    height: 25px;
+    width: 120px;
+    background-color: rgb(228, 255, 228);
+}
+
+input:hover {
+    border: 2px solid rgb(0, 143, 7);
+}
+
+table {
+    border: 2px solid black;
+    width: 50vw;
+    height: 25vh;
+}
+
+th {
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+td {
+    text-align: center;
+}
+
+.total {
+    border-top: 1px solid rgb(213, 213, 213);
+    font-size: 18px;
+}
+
+table td:last-child {
+    border-left: 1px solid rgb(213, 213, 213);
+}
+
+table th:last-child {
+    border-left: 1px solid rgb(213, 213, 213);
+}
