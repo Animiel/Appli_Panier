@@ -36,6 +36,7 @@ session_start();        /*Nécessaire pour accéder à la session correspondante
                         <td>".number_format($product['price'], 2, ',', '&nbsp;')."&nbsp;€</td>
                         <td>".$product['qtt']."</td>
                         <td>".number_format($product['total'], 2, ',', '&nbsp;')."&nbsp;€</td>
+                        <td><a href='traitement.php?action=retirerArticle'>Retirer l'article</a></td>
                     </tr>";
                 $totalGeneral += $product['total'];
             }
@@ -46,5 +47,7 @@ session_start();        /*Nécessaire pour accéder à la session correspondante
                 </table>";
         }
     ?>
+
+    <a href="traitement.php?action=viderPanier">Vider le panier</a>
 </body>
 </html>

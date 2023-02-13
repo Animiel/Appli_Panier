@@ -8,9 +8,9 @@
     <title>Ajout produit</title>
 </head>
 <body>
-
+    <div class="container">
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php" method="post">        <!-- le formulaire form agit sur la page traitement par le biais de la méthode post-->
+    <form action="traitement.php?action=ajouterProduit" method="post">        <!-- le formulaire form agit sur la page traitement par le biais de la méthode post-->
         <p>
             <label>
                 Nom du produit :
@@ -32,7 +32,14 @@
         <p>
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
+        <div class="menu">
+            <ul>
+                <li><a href="traitement.php">Traitement</a></li>
+                <li><a href="recap.php">Récapitulatif</a></li>
+            </ul>
+        </div>
     </form>
+    </div>
 
 </body>
 </html>

@@ -24,6 +24,37 @@ input:hover {
     border: 2px solid rgb(0, 143, 7);
 }
 
+.menu {
+    margin-right: 10px;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+ul {
+    width: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0px;
+}
+
+li {
+    list-style-type: none;
+    padding: 5px;
+}
+
+li a {
+    color: black;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+li a:hover {
+    color: rgb(0, 128, 0);
+    text-decoration: underline;
+}
+
 table {
     border: 2px solid black;
     width: 50vw;
@@ -43,7 +74,7 @@ td {
     font-size: 18px;
 }
 
-table td:last-child {
+table td {
     border-left: 1px solid rgb(213, 213, 213);
 }
 
