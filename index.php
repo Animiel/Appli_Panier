@@ -7,9 +7,9 @@
     <title>Ajout produit</title>
 </head>
 <body>
-    
+
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php" method="post">
+    <form action="traitement.php" method="post">        <!-- le formulaire form agit sur la page traitement par le biais de la méthode post-->
         <p>
             <label>
                 Nom du produit :
