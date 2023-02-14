@@ -2,13 +2,15 @@
 
 session_start();
 
+
+
 if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
 
         case "ajouterProduit":
             if (isset($_POST['submit'])) {
-                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
@@ -22,6 +24,7 @@ if (isset($_GET['action'])) {
                     $_SESSION["products"][] = $product;
                 }
             }
+            header("Location:index.php");
         die;
 
         case "viderPanier":
@@ -30,12 +33,16 @@ if (isset($_GET['action'])) {
         die;
 
         case "retirerArticle":
-            foreach ($_SESSION["products"] as $index=>$product) {
-                if ($product['name']) {
-                    unset($_SESSION["products"][$product]);
-                }
-            }
+            $index = $_GET['index'];
+            unset($_SESSION["products"][$index]);
             header("Location:recap.php");
+        die;
+
+        case "ajoutQtt":
+            $_SESSION["products"][$produit['qtt']] += 1;
+        die;
+
+        case "retirerQtt":
         die;
         
         default:

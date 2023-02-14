@@ -34,7 +34,7 @@
         </p>
         <div class="menu">
             <ul>
-                <li><a href="traitement.php">Traitement</a></li>
+                <li><a href="index.php">Index</a></li>
                 <li><a href="recap.php">Récapitulatif</a></li>
             </ul>
         </div>
