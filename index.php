@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +41,11 @@
                 <li><a href="index.php">Index</a></li>
                 <li><a href="recap.php">Récapitulatif</a></li>
             </ul>
+        </div>
+        <div>
+            <?php
+            echo "<p>Articles en session :".$_SESSION['panier']."</p>";
+            ?>
         </div>
     </form>
     </div>

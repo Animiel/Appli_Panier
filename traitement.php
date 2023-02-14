@@ -22,6 +22,7 @@ if (isset($_GET['action'])) {
                         "total" => $price * $qtt
                     ];
                     $_SESSION["products"][] = $product;
+                    $_SESSION['panier'] += $product['qtt'];
                 }
             }
             header("Location:index.php");
@@ -65,7 +66,11 @@ if (isset($_GET['action'])) {
         die;
     }
 }
+header("Location:index.php");
 
+if (isset($_SESSION["panier"])) {
+    $_SESSION['panier'] = 0;
+}
 header("Location:index.php");
        
 ?>
