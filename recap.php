@@ -25,6 +25,7 @@ session_start();        /*Nécessaire pour accéder à la session correspondante
                             <th>Prix</th>
                             <th>Quantité</th>
                             <th>Total</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -36,19 +37,19 @@ session_start();        /*Nécessaire pour accéder à la session correspondante
                         <td>".number_format($product['price'], 2, ',', '&nbsp;')."&nbsp;€</td>
                         <td><a class='option' href='traitement.php?action=ajoutQtt&index=$index'>+</a>".$product['qtt']."<a class='option' href='traitement.php?action=retirerQtt&index=$index'>-</a></td>
                         <td>".number_format($product['total'], 2, ',', '&nbsp;')."&nbsp;€</td>
-                        <td><a class='option' href='traitement.php?action=retirerArticle&index=$index'>Retirer l'article</a></td>
+                        <td><a class='clear' href='traitement.php?action=retirerArticle&index=$index'>Retirer l'article</a></td>
                     </tr>";     //Pourquoi remettre l'index dans l'ancre alors que le lien est sur la même ligne --> agit sur une autre page
                 $totalGeneral += $product['total'];
             }
             echo "<tr>
                     <td colspan=4 class='total'>Total général :</td>
                     <td class='total'><strong>".number_format($totalGeneral, 2, ',', '&nbsp;')."&nbsp;€</strong></td>
+                    <td><a class='clear' href='traitement.php?action=viderPanier'>Vider le panier</a></td>
                     </tbody>
                 </table>";
         }
     ?>
 
-    <a class='option' href="traitement.php?action=viderPanier">Vider le panier</a>
     <div class="menu">
         <ul>
             <li><a href="index.php">Index</a></li>
