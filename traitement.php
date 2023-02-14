@@ -39,10 +39,25 @@ if (isset($_GET['action'])) {
         die;
 
         case "ajoutQtt":
-            $_SESSION["products"][$produit['qtt']] += 1;
+            $index = $_GET['index'];
+            $_SESSION["products"][$index]['qtt']++;
+            $_SESSION["products"][$index]['total'] += $_SESSION["products"][$index]['price'];
+            /*$index est le tableau produit !
+            Vue imagée : Products = [pomme, raisin, fraise]
+                                    index0  index1  index2
+            Donc index0 = pomme[] => accès direct à ses propriétés (exemple: on peut voir $index comme étant pomme[] et accéder à "qtt" directement)*/
+            
+            header("Location:recap.php");
         die;
 
         case "retirerQtt":
+            $index = $_GET['index'];
+            $_SESSION["products"][$index]['qtt']--;
+            $_SESSION["products"][$index]['total'] -= $_SESSION["products"][$index]['price'];
+            if ($_SESSION["products"][$index]['qtt'] == 0) {
+                unset($_SESSION["products"][$index]);
+            }
+            header("Location:recap.php");
         die;
         
         default:
