@@ -2,7 +2,8 @@
 
 session_start();
 
-
+$messageErreur = urlencode("Accès à cette page refusé.");
+$messageSucces = urlencode("Opération réalisée avec succès.");
 
 if (isset($_GET['action'])) {
 
@@ -25,18 +26,18 @@ if (isset($_GET['action'])) {
                     $_SESSION['panier'] += $product['qtt'];
                 }
             }
-            header("Location:index.php");
+            header("Location:index.php?message=".$messageSucces);
         die;
 
         case "viderPanier":
             unset($_SESSION["products"]);
-            header("Location:recap.php");
+            header("Location:recap.php?message=".$messageSucces);
         die;
 
         case "retirerArticle":
             $index = $_GET['index'];
             unset($_SESSION["products"][$index]);
-            header("Location:recap.php");
+            header("Location:recap.php?message=".$messageSucces);
         die;
 
         case "ajoutQtt":
@@ -48,7 +49,7 @@ if (isset($_GET['action'])) {
                                     index0  index1  index2
             Donc index0 = pomme[] => accès direct à ses propriétés (exemple: on peut voir $index comme étant pomme[] et accéder à "qtt" directement)*/
             
-            header("Location:recap.php");
+            header("Location:recap.php?message=".$messageSucces);
         die;
 
         case "retirerQtt":
@@ -58,19 +59,19 @@ if (isset($_GET['action'])) {
             if ($_SESSION["products"][$index]['qtt'] == 0) {
                 unset($_SESSION["products"][$index]);
             }
-            header("Location:recap.php");
+            header("Location:recap.php?message=".$messageSucces);
         die;
         
         default:
-            header("Location:index.php");
+            header("Location:index.php?message=".$messageErreur);
         die;
     }
 }
-header("Location:index.php");
+header("Location:index.php?message=".$messageErreur);
 
 if (isset($_SESSION["panier"])) {
     $_SESSION['panier'] = 0;
 }
-header("Location:index.php");
+header("Location:index.php?message=".$messageErreur);
        
 ?>

@@ -1,5 +1,8 @@
 <?php
 session_start();        /*Nécessaire pour accéder à la session correspondante*/
+if (isset($_GET['message'])) {
+    echo "<p>".$_GET['message']."</p>";
+}
 ?>
 
 <!DOCTYPE html>
