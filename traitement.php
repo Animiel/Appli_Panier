@@ -2,9 +2,6 @@
 
 session_start();
 
-$messageErreur = urlencode("<p class='erreurPage'>Accès à cette page refusé.");
-$messageSucces = urlencode("Opération réalisée avec succès.");
-
 if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
@@ -23,23 +20,41 @@ if (isset($_GET['action'])) {
                     ];
                     $_SESSION["products"][] = $product;
                     $_SESSION['panier'] += $product['qtt'];
+                    $_SESSION['ajoutArticle'] = "<p class='ajoutArticle'>
+                    Vous avez ajouté ".$product['qtt']." ".$product['name']." a votre panier.
+                    </p>";
                 }
                 else {
-                    $_SESSION['invalidite'] = "Une information a mal été renseignée. Veillez à mettre un nom en toute lettre <strong>UNIQUEMENT</strong> et un prix et une quantité <strong>POSITIVE</strong>";
+                    $_SESSION['invalidite'] = "<p class='invalidite'>
+                    Une information a mal été renseignée. Veillez à mettre un nom en toute lettre <strong>UNIQUEMENT</strong> et un prix et une quantité <strong>POSITIVE</strong>
+                    </p>";
                 }
             }
+            header("Location:index.php");
+            /* 
+            $messageSucces = urlencode("...");
             header("Location:index.php?message=".$messageSucces);
+            est une option possible, mais impossible de désafficher le message puisque c'est une partie intégrante du lien, donc le refresh utilise le même lien.
+            Privilégier la deuxième option :
+            $_SESSION['name'] = "..."; et l'unset sur la page (code plus long mais plus accessible et modifiable)       
+            */
         die;
 
         case "viderPanier":
             unset($_SESSION["products"]);
-            header("Location:recap.php?message=".$messageSucces);
+            $_SESSION['panierVide'] = "<p class='panierVide'>
+            Votre panier a été vidé.
+            </p>";
+            header("Location:recap.php");
         die;
 
         case "retirerArticle":
             $index = $_GET['index'];
             unset($_SESSION["products"][$index]);
-            header("Location:recap.php?message=".$messageSucces);
+            $_SESSION['articleRetire'] = "<p class='articleRetire'>
+            Le produit ".$_SESSION['products'][$index]['name']." a été supprimer du panier.
+            </p>";
+            header("Location:recap.php");
         die;
 
         case "ajoutQtt":
@@ -50,8 +65,10 @@ if (isset($_GET['action'])) {
             Vue imagée : Products = [pomme, raisin, fraise]
                                     index0  index1  index2
             Donc index0 = pomme[] => accès direct à ses propriétés (exemple: on peut voir $index comme étant pomme[] et accéder à "qtt" directement)*/
-            
-            header("Location:recap.php?message=".$messageSucces);
+            $_SESSION['plusQtt'] = "<p class='plusQtt'>
+            Vous avez ajouté 1 ".$_SESSION['products'][$index]['name']." a votre panier.
+            </p>";
+            header("Location:recap.php");
         die;
 
         case "retirerQtt":
@@ -61,19 +78,28 @@ if (isset($_GET['action'])) {
             if ($_SESSION["products"][$index]['qtt'] == 0) {
                 unset($_SESSION["products"][$index]);
             }
-            header("Location:recap.php?message=".$messageSucces);
+            $_SESSION['moinsQtt'] = "<p class='moinsQtt'>
+            Vous avez retiré 1 ".$_SESSION['products'][$index]['name']." de votre panier.
+            </p>";
+            header("Location:recap.php");
         die;
         
         default:
-            header("Location:index.php?message=".$messageErreur);
+        $_SESSION['actionIntrouvable'] = "<p class='actionIntrouvable'>
+            L'action demandée est introuvable ou inexistante.
+            </p>";
+            header("Location:index.php");
         die;
     }
 }
-header("Location:index.php?message=".$messageErreur);
+header("Location:index.php");
 
 if (isset($_SESSION["panier"])) {
     $_SESSION['panier'] = 0;
 }
-header("Location:index.php?message=".$messageErreur);
+else {
+    $_SESSION['panier'] = 0;
+}
+header("Location:index.php");
        
 ?>

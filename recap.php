@@ -1,7 +1,26 @@
 <?php
 session_start();        /*Nécessaire pour accéder à la session correspondante*/
-if (isset($_GET['message'])) {
-    echo "<p>".$_GET['message']."</p>";
+// if (isset($_GET['message'])) {
+//     echo "<p>".$_GET['message']."</p>";
+// }
+if (isset($_SESSION['articleRetire'])) {
+    echo $_SESSION['articleRetire'];
+    unset($_SESSION['articleRetire']);
+}
+
+if (isset($_SESSION['panierVide'])) {
+    echo $_SESSION['panierVide'];
+    unset($_SESSION['panierVide']);
+}
+
+if (isset($_SESSION['plusQtt'])) {
+    echo $_SESSION['plusQtt'];
+    unset($_SESSION['plusQtt']);
+}
+
+if (isset($_SESSION['moinsQtt'])) {
+    echo $_SESSION['moinsQtt'];
+    unset($_SESSION['moinsQtt']);
 }
 ?>
 

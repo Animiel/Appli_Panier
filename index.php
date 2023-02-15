@@ -1,11 +1,23 @@
 <?php
 session_start();
-if (isset($_GET['message'])) {
-    echo "<p>".$_GET['message']."</p>";
-}
+// if (isset($_GET['message'])) {
+//     echo "<p>".$_GET['message']."</p>";
+//     unset($_GET['message']);
+// }
 
 if (isset($_SESSION['invalidite'])) {
-    echo "<p class='invalidite'>".$_SESSION['invalidite']."</p>";
+    echo $_SESSION['invalidite'];
+    unset($_SESSION['invalidite']);
+}
+
+if (isset($_SESSION['ajoutArticle'])) {
+    echo $_SESSION['ajoutArticle'];
+    unset($_SESSION['ajoutArticle']);
+}
+
+if (isset($_SESSION['bouton'])) {
+    echo $_SESSION['bouton'];
+    unset($_SESSION['bouton']);
 }
 ?>
 
@@ -51,7 +63,7 @@ if (isset($_SESSION['invalidite'])) {
         </div>
         <div>
             <?php
-            echo "<p>Articles en session :".$_SESSION['panier']."</p>";
+            echo "<p>Articles en session : ".$_SESSION['panier']."</p>";
             ?>
         </div>
     </form>
