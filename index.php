@@ -3,6 +3,10 @@ session_start();
 if (isset($_GET['message'])) {
     echo "<p>".$_GET['message']."</p>";
 }
+
+if (isset($_SESSION['invalidite'])) {
+    echo "<p class='invalidite'>".$_SESSION['invalidite']."</p>";
+}
 ?>
 
 <!DOCTYPE html>

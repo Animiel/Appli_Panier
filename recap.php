@@ -63,11 +63,6 @@ if (isset($_GET['message'])) {
                     </td>
                     </tbody>
                 </table>";
-            echo "<div>
-                    <p>
-                        Articles en session : $totalQuantite
-                    </p>
-                </div>";
         }
     ?>
 
@@ -76,6 +71,11 @@ if (isset($_GET['message'])) {
             <li><a href="index.php">Index</a></li>
             <li><a href="recap.php">Récapitulatif</a></li>
         </ul>
+    </div>
+    <div>
+        <?php
+            echo "<p>Articles en session : ".$_SESSION['panier']."</p>";
+        ?>
     </div>
 </body>
 </html>
