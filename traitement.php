@@ -2,6 +2,8 @@
 
 session_start();
 
+//preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $name) --> sert à vérifier si au moins une lettre ET un chiffre se trouve dans la string
+
 if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
@@ -11,7 +13,7 @@ if (isset($_GET['action'])) {
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-                if ($name && ($price && $price > 0) && ($qtt && $qtt > 0)) {
+                if (($name && preg_match('/[A-Za-z].*[0-9]/', $name)) && ($price && $price > 0) && ($qtt && $qtt > 0)) {
                     $product = [
                         "name" => $name,
                         "price" => $price,

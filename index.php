@@ -55,18 +55,18 @@ if (isset($_SESSION['bouton'])) {
         <p>
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
-        <div class="menu">
-            <ul>
-                <li><a href="index.php">Index</a></li>
-                <li><a href="recap.php">Récapitulatif</a></li>
-            </ul>
-        </div>
-        <div>
-            <?php
-            echo "<p>Articles en session : ".$_SESSION['panier']."</p>";
-            ?>
-        </div>
     </form>
+    <div class='articlesPanier'>
+        <?php
+        echo "<p>Articles en session : ".$_SESSION['panier']."</p>";
+        ?>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="index.php">Index</a></li>
+            <li><a href="recap.php">Récapitulatif</a></li>
+        </ul>
+    </div>
     </div>
 
 </body>

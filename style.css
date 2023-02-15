@@ -1,9 +1,25 @@
+.container {
+    display: inline-flex;
+    flex-flow: column wrap;
+    width: 100vw;
+    height: 100vh;
+}
+
+div, form {
+    flex-flow: row wrap;
+}
+
 h1 {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 10px 0px;
 }
 
 p {
     font-family: 'Lucida Sans', sans-serif;
+}
+
+form, h1, .articlesPanier {
+    width: 50%;
 }
 
 label {
@@ -25,11 +41,12 @@ input:hover {
 }
 
 .menu {
+    display: inline-flex;
+    align-self: flex-end;
+    width: 50%;
     margin-right: 10px;
-    display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 ul {
@@ -109,4 +126,64 @@ table th:first-child, table td:first-child {
 
 .clear:hover {
     border: 2px solid rgb(187, 0, 0);
+}
+
+.ajoutArticle {
+    margin: 5px;
+    padding: 3px;
+    border: 2px solid rgb(36, 87, 255);
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 21px;
+}
+
+.invalidite {
+    margin: 5px;
+    padding: 3px;
+    border: 2px solid rgb(163, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 21px;
+}
+
+.panierVide {
+    margin: 5px;
+    padding: 3px;
+    border: 2px solid rgb(163, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 21px;
+}
+
+.plusQtt {
+    margin: 5px;
+    padding: 3px;
+    border: 2px solid rgb(36, 87, 255);
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 21px;
+}
+
+.moinsQtt {
+    margin: 5px;
+    padding: 3px;
+    border: 2px solid rgb(36, 87, 255);
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 21px;
+}
+
+.articleRetire {
+    margin: 5px;
+    padding: 3px;
+    border: 2px solid rgb(163, 0, 0);
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 21px;
 }
