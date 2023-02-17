@@ -47,7 +47,7 @@ if (isset($_SESSION['moinsQtt'])) {
         foreach ($_SESSION["products"] as $index => $product) {
             echo "<tr>
                     <td>$index</td>
-                    <td>".$product['name']."</td>
+                    <td>".$product['name']."<img src='img/'".$_FILES[$index]['tmp_name']."></td>
                     <td>".number_format($product['price'], 2, ',', '&nbsp;')."&nbsp;€
                     </td>
                     <td>

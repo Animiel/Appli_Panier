@@ -107,5 +107,27 @@ else {
 $panier = (isset($_SESSION['panier'])) ? "<p>Articles en session : ".$_SESSION['panier']."</p>" : null;echo $panier;
 */
 header("Location:index.php");
+
+if(isset($_FILES['file'])) {
+    $tmpName = $_FILES['file']['tmp_name'];
+    $name = $_FILES['file']['name'];
+    $size = $_FILES['file']['size'];
+    $error = $_FILES['file']['error'];
+
+    $tabExtension = explode('.', $name);        //tabExtension est un tableau qui contiendra toutes les parties de $name à chaque fois qu'il rencontre un point
+    $extension = strtolower(end($tabExtension));        //end(tabExtension) permet d'accéder au dernier élément du tableau
+    $extensions = ["jpg", "png", "jpeg", "gif"];
+    $maxSize = 400000;
+
+    if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+        $uniqueName = uniqid('', true);         //crée un nom unique pour éviter que les fichiers soient écrasés en cas de nom identiques
+        $file = $uniqueName.".".$extension;
+        move_uploaded_file($tmpName, 'img/'.$file);
+    }
+    else {
+        echo "Une erreur est survenue.";
+    }
+
+}
        
 ?>

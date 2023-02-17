@@ -23,7 +23,7 @@ if (isset($_SESSION['bouton'])) {
 
     <div class="container">
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php?action=ajouterProduit" method="post">        <!-- le formulaire form agit sur la page traitement par le biais de la méthode post-->
+    <form action="traitement.php?action=ajouterProduit" method="post" enctype="multipart/form-data">        <!-- le formulaire form agit sur la page traitement par le biais de la méthode post-->
         <p>
             <label>
                 Nom du produit :
@@ -43,21 +43,22 @@ if (isset($_SESSION['bouton'])) {
             </label>
         </p>
         <p>
+            <label>
+                Image :
+                <input type="file" name="file">
+            </label>
+        </p>
+        <p>
+            <label>
+                Description du produit :
+                <input type="textarea" name="description" value="">
+            </label>
+        </p>
+        <p>
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
-    <div class='articlesPanier'>
-        <?php
-        echo "<p>Articles en session : ".$_SESSION['panier']."</p>";
-        ?>
-    </div>
-    <div class="menu">
-        <ul>
-            <li><a href="index.php">Index</a></li>
-            <li><a href="recap.php">Récapitulatif</a></li>
-        </ul>
-    </div>
-    </div>
+    
 
 <?php
 $contenu = ob_get_clean();      //On stocke tout ce qui se situe entre le ob_start et le clean
