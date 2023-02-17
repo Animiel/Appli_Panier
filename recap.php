@@ -34,6 +34,7 @@ if (isset($_SESSION['moinsQtt'])) {
     <title>Récapitulatif des produits</title>
 </head>
 <body>
+    <!--<div class="flox"> dans laquelle on inclut le tableau et le menu -->
     <?php
         if (!isset($_SESSION["products"]) || empty($_SESSION["products"])) {
             echo "<p>Aucun produit en session...</p>";
@@ -85,16 +86,17 @@ if (isset($_SESSION['moinsQtt'])) {
         }
     ?>
 
+<div>
+    <?php
+            echo "<p>Articles en session : ".$_SESSION['panier']."</p>";
+            ?>
+    </div>
+
     <div class="menu">
         <ul>
             <li><a href="index.php">Index</a></li>
             <li><a href="recap.php">Récapitulatif</a></li>
         </ul>
-    </div>
-    <div>
-        <?php
-            echo "<p>Articles en session : ".$_SESSION['panier']."</p>";
-        ?>
     </div>
 </body>
 </html>

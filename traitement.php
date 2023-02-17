@@ -13,7 +13,7 @@ if (isset($_GET['action'])) {
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-                if (($name && preg_match('/[A-Za-z].*[0-9]/', $name)) && ($price && $price > 0) && ($qtt && $qtt > 0)) {
+                if (($name) && ($price && $price > 0) && ($qtt && $qtt > 0)) {
                     $product = [
                         "name" => $name,
                         "price" => $price,
@@ -47,6 +47,7 @@ if (isset($_GET['action'])) {
             $_SESSION['panierVide'] = "<p class='panierVide'>
             Votre panier a été vidé.
             </p>";
+            $_SESSION['panier'] = 0;
             header("Location:recap.php");
         die;
 
@@ -102,6 +103,9 @@ if (isset($_SESSION["panier"])) {
 else {
     $_SESSION['panier'] = 0;
 }
+/*On peut aussi utiliser l'écriture ternaire :
+$panier = (isset($_SESSION['panier'])) ? "<p>Articles en session : ".$_SESSION['panier']."</p>" : null;echo $panier;
+*/
 header("Location:index.php");
        
 ?>

@@ -42,7 +42,7 @@ input:hover {
 
 .menu {
     display: inline-flex;
-    align-self: flex-end;
+    /* align-self: flex-end; */
     width: 50%;
     margin-right: 10px;
     bottom: 0;
@@ -187,3 +187,9 @@ table th:first-child, table td:first-child {
     font-family: 'Lucida Sans', sans-serif;
     font-size: 21px;
 }
+
+/* .flox {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;      //pour afficher le menu à côté du tableau
+} */
