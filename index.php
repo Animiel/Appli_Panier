@@ -21,16 +21,6 @@ if (isset($_SESSION['bouton'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <title>Ajout produit</title>
-</head>
-<body>
     <div class="container">
     <h1>Ajouter un produit</h1>
     <form action="traitement.php?action=ajouterProduit" method="post">        <!-- le formulaire form agit sur la page traitement par le biais de la méthode post-->
@@ -69,5 +59,8 @@ if (isset($_SESSION['bouton'])) {
     </div>
     </div>
 
-</body>
-</html>
+<?php
+$contenu = ob_get_clean();      //On stocke tout ce qui se situe entre le ob_start et le clean
+$title = "Achats";
+require "template.php";     //On demande le fichier template puisque le ob_start empêche l'affichage de ce qui se trouve en lui --> en appelant template sur la page index.php il ne peut pas y avoir de confusion avec la page recap (qui contient exactement les même noms de variables)
+?>
