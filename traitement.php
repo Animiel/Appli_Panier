@@ -3,7 +3,7 @@
 session_start();
 
 //preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $name) --> sert à vérifier si au moins une lettre ET un chiffre se trouve dans la string
-
+require "functions.php";
 if (isset($_GET['action'])) {
 
     switch ($_GET['action']) {
@@ -41,15 +41,15 @@ if (isset($_GET['action'])) {
                                 "description" => $description
                             ];
                             $_SESSION["products"][] = $product;
-                            $_SESSION['panier'] += $product['qtt'];
-                            $_SESSION['ajoutArticle'] = "<p class='ajoutArticle'>
+                            totalQtt();
+                            $_SESSION['message'] = "<p class='ajoutArticle'>
                             Vous avez ajouté ".$product['qtt']." ".$product['name']." a votre panier.
                             </p>";
                         }
                     }
                 }
                 else {
-                    $_SESSION['invalidite'] = "<p class='invalidite'>
+                    $_SESSION['message'] = "<p class='invalidite'>
                     Une information a mal été renseignée. Veillez à mettre un nom en toute lettre <strong>UNIQUEMENT</strong> et un prix et une quantité <strong>POSITIVE</strong>
                     </p>";
                 }
@@ -70,7 +70,7 @@ if (isset($_GET['action'])) {
             foreach ($path as $file) {
                 unlink($file);
             }
-            $_SESSION['panierVide'] = "<p class='panierVide'>
+            $_SESSION['message'] = "<p class='panierVide'>
             Votre panier a été vidé.
             </p>";
             $_SESSION['panier'] = 0;
@@ -84,7 +84,7 @@ if (isset($_GET['action'])) {
             if ($_SESSION['products'] == []) {
                 $_SESSION['panier'] = 0;
             }
-            $_SESSION['articleRetire'] = "<p class='articleRetire'>
+            $_SESSION['message'] = "<p class='articleRetire'>
             Le produit ".$_SESSION['products'][$index]['name']." a été supprimer du panier.
             </p>";
             header("Location:recap.php");
@@ -98,7 +98,7 @@ if (isset($_GET['action'])) {
             Vue imagée : Products = [pomme, raisin, fraise]
                                     index0  index1  index2
             Donc index0 = pomme[] => accès direct à ses propriétés (exemple: on peut voir $index comme étant pomme[] et accéder à "qtt" directement)*/
-            $_SESSION['plusQtt'] = "<p class='plusQtt'>
+            $_SESSION['message'] = "<p class='plusQtt'>
             Vous avez ajouté 1 ".$_SESSION['products'][$index]['name']." a votre panier.
             </p>";
             header("Location:recap.php");
@@ -111,14 +111,14 @@ if (isset($_GET['action'])) {
             if ($_SESSION["products"][$index]['qtt'] == 0) {
                 unset($_SESSION["products"][$index]);
             }
-            $_SESSION['moinsQtt'] = "<p class='moinsQtt'>
+            $_SESSION['message'] = "<p class='moinsQtt'>
             Vous avez retiré 1 ".$_SESSION['products'][$index]['name']." de votre panier.
             </p>";
             header("Location:recap.php");
         die;
         
         default:
-        $_SESSION['actionIntrouvable'] = "<p class='actionIntrouvable'>
+        $_SESSION['message'] = "<p class='actionIntrouvable'>
             L'action demandée est introuvable ou inexistante.
             </p>";
             header("Location:index.php");

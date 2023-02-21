@@ -5,20 +5,22 @@ session_start();
 //     unset($_GET['message']);
 // }
 
-if (isset($_SESSION['invalidite'])) {
-    echo $_SESSION['invalidite'];
-    unset($_SESSION['invalidite']);
-}
+// if (isset($_SESSION['invalidite'])) {
+//     echo $_SESSION['invalidite'];
+//     unset($_SESSION['invalidite']);
+// }
 
-if (isset($_SESSION['ajoutArticle'])) {
-    echo $_SESSION['ajoutArticle'];
-    unset($_SESSION['ajoutArticle']);
-}
+// if (isset($_SESSION['ajoutArticle'])) {
+//     echo $_SESSION['ajoutArticle'];
+//     unset($_SESSION['ajoutArticle']);
+// }
 
-if (isset($_SESSION['bouton'])) {
-    echo $_SESSION['bouton'];
-    unset($_SESSION['bouton']);
-}
+// if (isset($_SESSION['bouton'])) {
+//     echo $_SESSION['bouton'];
+//     unset($_SESSION['bouton']);
+// }
+require "functions.php";
+afficherMessage();
 ?>
 
     <div class="container">

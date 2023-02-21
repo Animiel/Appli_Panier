@@ -6,25 +6,27 @@ ob_start();
 //     echo "<p>".$_GET['message']."</p>";
 // }
 
-if (isset($_SESSION['articleRetire'])) {
-    echo $_SESSION['articleRetire'];
-    unset($_SESSION['articleRetire']);
-}
+// if (isset($_SESSION['articleRetire'])) {
+//     echo $_SESSION['articleRetire'];
+//     unset($_SESSION['articleRetire']);
+// }
 
-if (isset($_SESSION['panierVide'])) {
-    echo $_SESSION['panierVide'];
-    unset($_SESSION['panierVide']);
-}
+// if (isset($_SESSION['panierVide'])) {
+//     echo $_SESSION['panierVide'];
+//     unset($_SESSION['panierVide']);
+// }
 
-if (isset($_SESSION['plusQtt'])) {
-    echo $_SESSION['plusQtt'];
-    unset($_SESSION['plusQtt']);
-}
+// if (isset($_SESSION['plusQtt'])) {
+//     echo $_SESSION['plusQtt'];
+//     unset($_SESSION['plusQtt']);
+// }
 
-if (isset($_SESSION['moinsQtt'])) {
-    echo $_SESSION['moinsQtt'];
-    unset($_SESSION['moinsQtt']);
-}
+// if (isset($_SESSION['moinsQtt'])) {
+//     echo $_SESSION['moinsQtt'];
+//     unset($_SESSION['moinsQtt']);
+// }
+require "functions.php";
+afficherMessage();
 
     if (!isset($_SESSION["products"]) || empty($_SESSION["products"])) {
         echo "<p>Aucun produit en session...</p>";
