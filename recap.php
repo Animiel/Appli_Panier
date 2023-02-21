@@ -48,8 +48,8 @@ if (isset($_SESSION['moinsQtt'])) {
             // var_dump($product['description']);
             echo "<tr>
                     <td>$index</td>
-                    <td>".$product['name']."<img class='img' src='img/".$product['image']."'><br>
-                    <p>".$product['description']."</p>
+                    <td class='prod-name'><strong>".$product['name']."</strong><br><img class='img' src='img/".$product['image']."'><br>
+                    <p><small>".$product['description']."</small></p>
                     </td>
                     <td>".number_format($product['price'], 2, ',', '&nbsp;')."&nbsp;€
                     </td>

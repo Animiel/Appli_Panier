@@ -13,7 +13,7 @@ if (isset($_GET['action'])) {
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-                $description = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
+                $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
                 
                 if(isset($_FILES['file'])) {
                     $tmpName = $_FILES['file']['tmp_name'];
@@ -66,6 +66,10 @@ if (isset($_GET['action'])) {
 
         case "viderPanier":
             unset($_SESSION["products"]);
+            $path = glob('img/*');
+            foreach ($path as $file) {
+                unlink($file);
+            }
             $_SESSION['panierVide'] = "<p class='panierVide'>
             Votre panier a été vidé.
             </p>";
@@ -75,6 +79,7 @@ if (isset($_GET['action'])) {
 
         case "retirerArticle":
             $index = $_GET['index'];
+            unlink('img/'.$_SESSION['products'][$index]['image']);
             unset($_SESSION["products"][$index]);
             if ($_SESSION['products'] == []) {
                 $_SESSION['panier'] = 0;

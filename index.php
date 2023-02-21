@@ -48,12 +48,10 @@ if (isset($_SESSION['bouton'])) {
                 <input type="file" name="file">
             </label>
         </p>
-        <p>
-            <label>
-                Description du produit :
-                <input type="textarea" name="description" value="">
-            </label>
-        </p>
+        <label>
+            Description du produit :
+            <textarea name='description' rows='5' cols='50'></textarea>
+        </label>
         <p>
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>

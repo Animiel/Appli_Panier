@@ -197,3 +197,8 @@ table th:first-child, table td:first-child {
     flex-wrap: nowrap;
     justify-content: space-evenly;      //pour afficher le menu à côté du tableau
 } */
+
+.img {
+    width: 20%;
+    height: 20%;
+}
