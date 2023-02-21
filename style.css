@@ -78,8 +78,8 @@ li a:hover {
 
 table {
     border: 2px solid black;
-    width: 50vw;
-    height: 25vh;
+    width: auto;
+    height: auto;
 }
 
 th {

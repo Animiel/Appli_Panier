@@ -13,18 +13,40 @@ if (isset($_GET['action'])) {
                 $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
                 $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-                if (($name) && ($price && $price > 0) && ($qtt && $qtt > 0)) {
-                    $product = [
-                        "name" => $name,
-                        "price" => $price,
-                        "qtt" => $qtt,
-                        "total" => $price * $qtt
-                    ];
-                    $_SESSION["products"][] = $product;
-                    $_SESSION['panier'] += $product['qtt'];
-                    $_SESSION['ajoutArticle'] = "<p class='ajoutArticle'>
-                    Vous avez ajouté ".$product['qtt']." ".$product['name']." a votre panier.
-                    </p>";
+                $description = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
+                
+                if(isset($_FILES['file'])) {
+                    $tmpName = $_FILES['file']['tmp_name'];
+                    $img_name = $_FILES['file']['name'];
+                    $size = $_FILES['file']['size'];
+                    $error = $_FILES['file']['error'];
+                
+                    $tabExtension = explode('.', $img_name);        //tabExtension est un tableau qui contiendra toutes les parties de $name à chaque fois qu'il rencontre un point
+                    $extension = strtolower(end($tabExtension));        //end(tabExtension) permet d'accéder au dernier élément du tableau
+                    $extensions = ["jpg", "png", "jpeg", "gif"];
+                    $maxSize = 400000;
+                
+                    if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
+                        $uniqueName = uniqid('', true);         //crée un nom unique pour éviter que les fichiers soient écrasés en cas de nom identiques
+                        $file = $uniqueName.".".$extension;
+                        move_uploaded_file($tmpName, 'img/'.$file);
+                        
+                        if (($name) && ($price && $price > 0) && ($qtt && $qtt > 0) && $description) {
+                            $product = [
+                                "name" => $name,
+                                "price" => $price,
+                                "qtt" => $qtt,
+                                "total" => $price * $qtt,
+                                "image" => $file,
+                                "description" => $description
+                            ];
+                            $_SESSION["products"][] = $product;
+                            $_SESSION['panier'] += $product['qtt'];
+                            $_SESSION['ajoutArticle'] = "<p class='ajoutArticle'>
+                            Vous avez ajouté ".$product['qtt']." ".$product['name']." a votre panier.
+                            </p>";
+                        }
+                    }
                 }
                 else {
                     $_SESSION['invalidite'] = "<p class='invalidite'>
@@ -54,6 +76,9 @@ if (isset($_GET['action'])) {
         case "retirerArticle":
             $index = $_GET['index'];
             unset($_SESSION["products"][$index]);
+            if ($_SESSION['products'] == []) {
+                $_SESSION['panier'] = 0;
+            }
             $_SESSION['articleRetire'] = "<p class='articleRetire'>
             Le produit ".$_SESSION['products'][$index]['name']." a été supprimer du panier.
             </p>";
@@ -108,26 +133,5 @@ $panier = (isset($_SESSION['panier'])) ? "<p>Articles en session : ".$_SESSION['
 */
 header("Location:index.php");
 
-if(isset($_FILES['file'])) {
-    $tmpName = $_FILES['file']['tmp_name'];
-    $name = $_FILES['file']['name'];
-    $size = $_FILES['file']['size'];
-    $error = $_FILES['file']['error'];
-
-    $tabExtension = explode('.', $name);        //tabExtension est un tableau qui contiendra toutes les parties de $name à chaque fois qu'il rencontre un point
-    $extension = strtolower(end($tabExtension));        //end(tabExtension) permet d'accéder au dernier élément du tableau
-    $extensions = ["jpg", "png", "jpeg", "gif"];
-    $maxSize = 400000;
-
-    if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
-        $uniqueName = uniqid('', true);         //crée un nom unique pour éviter que les fichiers soient écrasés en cas de nom identiques
-        $file = $uniqueName.".".$extension;
-        move_uploaded_file($tmpName, 'img/'.$file);
-    }
-    else {
-        echo "Une erreur est survenue.";
-    }
-
-}
        
 ?>

@@ -45,9 +45,12 @@ if (isset($_SESSION['moinsQtt'])) {
         $totalGeneral = 0;
         $totalQuantite = 0;
         foreach ($_SESSION["products"] as $index => $product) {
+            // var_dump($product['description']);
             echo "<tr>
                     <td>$index</td>
-                    <td>".$product['name']."<img src='img/'".$_FILES[$index]['tmp_name']."></td>
+                    <td>".$product['name']."<img class='img' src='img/".$product['image']."'><br>
+                    <p>".$product['description']."</p>
+                    </td>
                     <td>".number_format($product['price'], 2, ',', '&nbsp;')."&nbsp;€
                     </td>
                     <td>
